@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pendaftaran Les Privat Emil Alfian</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        color: #333;
+      }
+      .container {
+        width: 90%;
+        max-width: 600px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+      }
+      form label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+      }
+      form input,
+      form select,
+      form button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      form button {
+        background-color: #5cb85c;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+      }
+      form button:hover {
+        background-color: #4cae4c;
+      }
+      .message {
+        background-color: #dff0d8;
+        color: #3c763d;
+        padding: 10px;
+        border: 1px solid #d6e9c6;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+      .error {
+        background-color: #f2dede;
+        color: #a94442;
+        padding: 10px;
+        border: 1px solid #ebccd1;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+      .data-list {
+        margin-top: 20px;
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      pre {
+        background: #f9f9f9;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pendaftaran Les Privat Emil Alfian</h1>
+      <form id="lesForm">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required />
+
+        <label for="tingkat">Tingkat:</label>
+        <select id="tingkat" name="tingkat" required>
+          <option value="">-- Pilih Tingkat --</option>
+          <option value="SD">SD</option>
+          <option value="SMP">SMP</option>
+          <option value="SMA">SMA</option>
+        </select>
+
+        <label for="mata_pelajaran">Mata Pelajaran:</label>
+        <input type="text" id="mata_pelajaran" name="mata_pelajaran" placeholder="Masukkan mata pelajaran" required />
+
+        <button type="submit">Daftar</button>
+      </form>
+
+      <div id="message"></div>
+    </div>
+    <div class="data-list">
+      <h2>Data Pendaftar</h2>
+      <pre id="dataDisplay">Belum ada data pendaftaran.</pre>
+    </div>
+
+    <script>
+      document.getElementById('lesForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Ambil data dari form
+        var nama = document.getElementById('nama').value;
+        var tingkat = document.getElementById('tingkat').value;
+        var mataPelajaran = document.getElementById('mata_pelajaran').value;
+        var messageElement = document.getElementById('message');
+        var dataDisplay = document.getElementById('dataDisplay');
+
+        // Validasi input
+        if (nama && tingkat && mataPelajaran) {
+          var newData = 'Nama: ' + nama + ' | Tingkat: ' + tingkat + ' | Mata Pelajaran: ' + mataPelajaran + '\n';
+
+          // Menampilkan data pada halaman
+          dataDisplay.textContent += newData;
+
+          // Menampilkan pesan sukses
+          messageElement.innerHTML = '<div class="message">Pendaftaran berhasil disimpan!</div>';
+        } else {
+          // Menampilkan pesan error jika ada field yang kosong
+          messageElement.innerHTML = '<div class="error">Semua field harus diisi!</div>';
+        }
+
+        // Reset form setelah submit
+        document.getElementById('lesForm').reset();
+      });
+    </script>
+  </body>
+</html>
